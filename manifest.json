@@ -1,8 +1,8 @@
 {
-  "name": "Project Hub",
-  "short_name": "ProjHub",
-  "description": "A central portal for all my web projects.",
-  "start_url": "/pwa_app/",
+  "name": "AI Search Tool",
+  "short_name": "AiTool",
+  "description": "AI Search tool",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#007bff",
