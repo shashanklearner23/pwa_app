@@ -1,26 +1,23 @@
-const CACHE_NAME = 'ai-pwa-app-v1';
-const ASSETS_TO_CACHE = [
+const CACHE_NAME = 'ai-hub-cache-v2';
+const ASSETS = [
   '/pwa_app/',
   '/pwa_app/index.html',
-  '/pwa_app/manifest.json'
+  '/pwa_app/manifest.json',
+  '/pwa_app/sw.js'
 ];
 
-// Install Event
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      // Use {cache: 'reload'} to ensure we get fresh files during install
-      return cache.addAll(ASSETS_TO_CACHE);
-    }).then(() => self.skipWaiting()) // Forces the waiting service worker to become active
+      return cache.addAll(ASSETS);
+    })
   );
 });
 
-// Activate Event
 self.addEventListener('activate', (event) => {
-  event.waitUntil(clients.claim()); // Immediately take control of the page
+  event.waitUntil(clients.claim());
 });
 
-// Fetch Event
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
