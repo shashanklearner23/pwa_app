@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="manifest" href="manifest.json">
+    <title>My Project Hub</title>
+</head>
+<body>
+    <h1>My Project Portal</h1>
+    <div id="project-list"></div>
+
+    <script>
+        // Add your project URLs here
+        const projects = [
+            { name: "Project Alpha", url: "https://user.github.io/alpha" },
+            { name: "Project Beta", url: "https://external-link.com" }
+        ];
+
+        const container = document.getElementById('project-list');
+        projects.forEach(p => {
+            const link = document.createElement('a');
+            link.href = p.url;
+            link.innerText = p.name;
+            link.style.display = "block";
+            container.appendChild(link);
+        });
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
