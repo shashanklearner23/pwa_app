@@ -19,6 +19,23 @@
             align-items: center;
         }
         h1 { color: #333; margin-top: 30px; }
+        
+        /* Install Button Styling */
+        #install-btn {
+            display: none; /* Hidden by default, shown via JS */
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #install-btn:active { transform: scale(0.95); }
+
         .container {
             width: 100%;
             max-width: 600px;
@@ -36,54 +53,38 @@
             text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        .project-card:hover {
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        .project-card:active {
-            transform: scale(0.98);
-        }
-        .project-info h3 {
-            margin: 0;
-            color: #007bff;
-        }
-        .project-info p {
-            margin: 5px 0 0;
-            font-size: 14px;
-            color: #666;
-        }
-        .arrow {
-            color: #ccc;
-            font-size: 20px;
-        }
+        .project-card:hover { box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .project-card:active { transform: scale(0.98); }
+        .project-info h3 { margin: 0; color: #007bff; }
+        .project-info p { margin: 5px 0 0; font-size: 14px; color: #666; }
+        .arrow { color: #ccc; font-size: 20px; }
     </style>
 </head>
 <body>
 
     <h1>AI Search Tool</h1>
+
+    <button id="install-btn">Install App</button>
     
-    <div class="container" id="project-list">
-        </div>
+    <div class="container" id="project-list"></div>
 
     <script>
-        // --- 1. CONFIGURATION: YOUR ACTUAL URLS ---
+        // --- 1. CONFIGURATION ---
         const myProjects = [
             { 
                 name: "AI Search Tool", 
                 url: "https://script.google.com/macros/s/AKfycbzhtTLOwOfgf3bcgo6N3-9aOe6ZYZaev0u1zn8eq2XrZsbwnvgcJ20d2bUUNQ4o0G2z/exec", 
                 description: "AI Search Tool" 
             }
-            // You can add more { name: "", url: "", description: "" } objects here later
         ];
 
         // --- 2. RENDER PROJECTS ---
         const listContainer = document.getElementById('project-list');
-        
         myProjects.forEach(project => {
             const card = document.createElement('a');
             card.href = project.url;
             card.className = 'project-card';
             card.target = "_blank"; 
-
             card.innerHTML = `
                 <div class="project-info">
                     <h3>${project.name}</h3>
@@ -94,7 +95,34 @@
             listContainer.appendChild(card);
         });
 
-        // --- 3. REGISTER SERVICE WORKER ---
+        // --- 3. INSTALL LOGIC ---
+        let deferredPrompt;
+        const installBtn = document.getElementById('install-btn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Show the button when the browser says the app is installable
+            installBtn.style.display = 'block';
+
+            installBtn.addEventListener('click', () => {
+                installBtn.style.display = 'none';
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            });
+        });
+
+        // Hide button if already installed
+        window.addEventListener('appinstalled', () => {
+            installBtn.style.display = 'none';
+        });
+
+        // --- 4. REGISTER SERVICE WORKER ---
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js')
