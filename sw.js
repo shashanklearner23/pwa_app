@@ -1,4 +1,4 @@
-const CACHE_NAME = 'counselling-app-v2';
+const CACHE_NAME = 'ai-app-v2';
 const ASSETS = [
   './',
   './index.html',
