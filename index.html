@@ -18,10 +18,11 @@
             flex-direction: column;
             align-items: center;
         }
-        h1 { color: #333; }
+        h1 { color: #333; margin-top: 30px; }
         .container {
             width: 100%;
             max-width: 600px;
+            margin-top: 20px;
         }
         .project-card {
             background: white;
@@ -33,7 +34,10 @@
             justify-content: space-between;
             align-items: center;
             text-decoration: none;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .project-card:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
         .project-card:active {
             transform: scale(0.98);
@@ -49,7 +53,7 @@
         }
         .arrow {
             color: #ccc;
-            font-weight: bold;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -61,23 +65,14 @@
         </div>
 
     <script>
-        // --- 1. CONFIGURATION: ADD YOUR PROJECT URLS HERE ---
+        // --- 1. CONFIGURATION: YOUR ACTUAL URLS ---
         const myProjects = [
             { 
-                name: "AI Tool Catalog", 
-                url: "https://shashanklearner23.github.io/ai-catalog", 
-                description: "My AI tool management app" 
-            },
-            { 
-                name: "Portfolio Site", 
-                url: "https://shashanklearner23.github.io/portfolio", 
-                description: "Showcase of my web development work" 
-            },
-            { 
-                name: "Data Structures Tool", 
-                url: "https://shashanklearner23.github.io/ds-visualizer", 
-                description: "C++ and Algorithms interactive guide" 
+                name: "Main Google App", 
+                url: "https://script.google.com/macros/s/AKfycbx_enYkkTtDrX8axDjbImX0mWQ71RWnAR1XbC1iPWHAxXj6RydfPsSyWR8nnRIb_N3i/exec", 
+                description: "My Apps Script Automation Tool" 
             }
+            // You can add more { name: "", url: "", description: "" } objects here later
         ];
 
         // --- 2. RENDER PROJECTS ---
@@ -87,7 +82,7 @@
             const card = document.createElement('a');
             card.href = project.url;
             card.className = 'project-card';
-            card.target = "_blank"; // Opens project in new tab
+            card.target = "_blank"; 
 
             card.innerHTML = `
                 <div class="project-info">
@@ -103,8 +98,8 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('Service Worker registered!', reg))
-                    .catch(err => console.log('Registration failed:', err));
+                    .then(reg => console.log('PWA Service Worker registered!'))
+                    .catch(err => console.log('PWA Registration failed:', err));
             });
         }
     </script>
