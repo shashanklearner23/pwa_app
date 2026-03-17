@@ -1,8 +1,8 @@
-const CACHE_NAME = 'pwa-app-v1';
+const CACHE_NAME = 'ai-pwa-app-v1';
 const ASSETS_TO_CACHE = [
-  '/pwa_app/',
-  '/pwa_app/index.html',
-  '/pwa_app/manifest.json'
+  '/',
+  '/index.html',
+  '/manifest.json'
 ];
 
 // Install Event
