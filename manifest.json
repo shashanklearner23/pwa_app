@@ -1,20 +1,20 @@
 {
-  "name": "AI Search Tool",
-  "short_name": "AiTool",
-  "description": "AI Search tool",
+  "name": "AI Tools Hub",
+  "short_name": "AITools",
+  "description": "Your launchpad for the AI era",
   "start_url": "/pwa_app/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#007bff",
+  "background_color": "#0f172a",
+  "theme_color": "#f59e0b",
   "icons": [
     {
-      "src": "https://via.placeholder.com/192.png",
-      "sizes": "192x192",
+      "src": "https://cdn-icons-png.flaticon.com/512/2103/2103633.png",
+      "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "https://via.placeholder.com/512.png",
-      "sizes": "512x512",
+      "src": "https://cdn-icons-png.flaticon.com/192/2103/2103633.png",
+      "sizes": "192x192",
       "type": "image/png"
     }
   ]
