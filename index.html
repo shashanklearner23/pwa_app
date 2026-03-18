@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#f59e0b">
-    <title>AI Tools App</title>
+    <title>AI Tool</title>
     <link rel="manifest" href="manifest.json">
     <style>
         body {
@@ -54,17 +54,17 @@
 </head>
 <body>
 
-    <h1>AI Tools App</h1>
+    <h1>AI Tool</h1>
 
-    <button id="install-btn">📥 Download App</button>
+    <button id="install-btn">📥 Download AI Tool</button>
     
     <div class="container" id="project-list"></div>
 
     <script>
         const myProjects = [{ 
-            name: "AI Tools App", 
+            name: "Launch AI Tool", 
             url: "https://script.google.com/macros/s/AKfycbzUcZEASvFx1TLg1xkkfvwz6Mr-m5hza5XQ59kEhmqgc4elUKGl6Qe8xsYtbH1UhUwl/exec", 
-            description: "Launch to access the portal" 
+            description: "Access your AI portal" 
         }];
 
         const listContainer = document.getElementById('project-list');
@@ -103,7 +103,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('SW Registered'))
+                    .then(reg => console.log('AI Tool SW Registered'))
                     .catch(err => console.log('SW Error', err));
             });
         }
