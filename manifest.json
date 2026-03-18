@@ -2,7 +2,7 @@
   "name": "AI Search Tool",
   "short_name": "AiTool",
   "description": "AI Search tool",
-  "start_url": "/",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#007bff",
